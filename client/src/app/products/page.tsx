@@ -1,19 +1,35 @@
-import productApiRequest from '@/apiRequests/product'
-import Image from 'next/image'
-import Link from 'next/link'
-import { Metadata } from 'next'
-import ProductEditButton from '@/app/products/_components/product-edit-button'
-import ProductAddButton from '@/app/products/_components/product-add-button'
+"use client"
+import { useState, useEffect } from 'react';
+import productApiRequest from '@/apiRequests/product';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Metadata } from 'next';
+import ProductEditButton from '@/app/products/_components/product-edit-button';
+import ProductAddButton from '@/app/products/_components/product-add-button';
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: 'Danh sách sản phẩm',
-  description: 'Danh sách sản phẩm của Productic, được tạo bởi Được dev'
-}
+  description: 'Danh sách sản phẩm của Productic, được tạo bởi Được dev',
+};
 
-export default async function ProductListPage() {
-  const { payload } = await productApiRequest.getList()
-  const productList = payload.data
-  return (
+export default function ProductListPage() {
+  const [productList, setProductList] = useState([]);
+
+  useEffect(() => {
+    fetchProductList(); // Gọi hàm lấy danh sách sản phẩm khi component được render
+  }, []); // Chỉ gọi một lần khi component mount
+
+  const fetchProductList = async () => {
+    try {
+      const { payload } = await productApiRequest.getList(); // Gọi API để lấy danh sách sản phẩm
+      setProductList(payload.data); // Cập nhật danh sách sản phẩm vào state
+    } catch (error) {
+      console.error('Lỗi khi lấy danh sách sản phẩm:', error);
+    }
+  };
+
+  // Các thành phần JSX để hiển thị danh sách sản phẩm
+  return (  
     <div className='space-y-3'>
       <h1>Product List</h1>
       <ProductAddButton />
@@ -38,5 +54,5 @@ export default async function ProductListPage() {
         ))}
       </div>
     </div>
-  )
+  );
 }

@@ -56,15 +56,15 @@ const ProfileForm = ({ profile }: { profile: Profile }) => {
     }
   }
   return (
-    <Form {...form}>
-      <form
+    <Form {...form} >
+      <form style={{ marginLeft:"550px",marginTop:"100px" }}
         onSubmit={form.handleSubmit(onSubmit)}
         className='space-y-2 max-w-[600 px] flex-shrink-0 w-full'
         noValidate
       >
         <FormLabel>Email</FormLabel>
-        <FormControl>
-          <Input
+        <FormControl >
+          <Input style={{ width:"300px" }}
             placeholder='shadcn'
             type='email'
             value={profile.email}
@@ -80,14 +80,14 @@ const ProfileForm = ({ profile }: { profile: Profile }) => {
             <FormItem>
               <FormLabel>Tên</FormLabel>
               <FormControl>
-                <Input placeholder='Tên' type='text' {...field} />
+                <Input style={{ width:"300px" }} placeholder='Tên' type='text' {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
 
-        <Button type='submit' className='!mt-8 w-full'>
+        <Button style={{ width:"300px" }} type='submit' className='!mt-8 w-full'>
           Cập nhật
         </Button>
       </form>

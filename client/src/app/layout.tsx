@@ -8,6 +8,7 @@ import SlideSession from '@/components/slide-session'
 import { baseOpenGraph } from '@/app/shared-metadata'
 // import dynamic from 'next/dynamic'
 import Header from '@/components/header'
+import Footer from '@/components/footer'
 // const Header = dynamic(() => import('@/components/header'), { ssr: false })
 const inter = Inter({ subsets: ['vietnamese'] })
 
@@ -40,7 +41,9 @@ export default async function RootLayout({
             {children}
             <SlideSession />
           </AppProvider>
+          <Footer/>
         </ThemeProvider>
+        
       </body>
     </html>
   )
